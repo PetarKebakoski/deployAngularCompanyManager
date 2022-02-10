@@ -1,0 +1,88 @@
+.addTask h2 {
+    border: 1px solid #000000;
+    width: 639px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #205081;
+    color: #ffffff;
+    padding-left: 10px;
+}
+
+.addTask {
+    margin-left: 10px;
+    float: left;
+}
+
+.addTask .table1 {
+    border: 1px solid #d6d6c2;
+}
+
+.addTask .table1, tr, th, td {
+    width: 639px;
+    height: 35px;
+    text-align: left;
+    padding: 5px 30px;
+}
+
+#task {
+    width: 325px;
+}
+
+textarea {
+    resize: none;
+}
+
+#note {
+    width: 325px;
+}
+
+#addTaskButton, #addTaskTemplateButton {
+    width: 578px;
+    height: 35px;
+    color: #ffffff;
+    background-color: #337ab7;
+}
+
+#addTaskButton:hover, #addTaskTemplateButton:hover {
+    background-color: #296497;
+}
+
+.workday h2 {
+    border: 1px solid #000000;
+    width: 639px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #205081;
+    color: #ffffff;
+    padding-left: 10px;
+}
+
+.workday {
+    float: right;
+    margin-right: 10px;
+}
+
+.taskSuggestionsAndTemplates h2 {
+    border: 1px solid #000000;
+    width: 1305px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #205081;
+    color: #ffffff;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+.activities h2 {
+    border: 1px solid #000000;
+    width: 1305px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #205081;
+    color: #ffffff;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+
+
