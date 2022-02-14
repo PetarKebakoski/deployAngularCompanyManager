@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  // showMe - Task Suggestions And Templates
+  showMe: boolean = false
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  // toogleTag() - Task Suggestions And Templates 
+
+  toogleTag() {
+    this.showMe = !this.showMe
   }
 
 }

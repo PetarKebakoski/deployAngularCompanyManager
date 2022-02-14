@@ -24,8 +24,17 @@
     padding: 5px 30px;
 }
 
+#customersAndProjects {
+    width: 130px;
+}
+
 #task {
-    width: 325px;
+    width: 348px;
+}
+
+#taskTextarea {
+    width: 348px;
+    height: 200px;
 }
 
 textarea {
@@ -33,7 +42,7 @@ textarea {
 }
 
 #note {
-    width: 325px;
+    width: 348px;
 }
 
 #addTaskButton, #addTaskTemplateButton {
@@ -64,7 +73,41 @@ textarea {
 
 .taskSuggestionsAndTemplates h2 {
     border: 1px solid #000000;
-    width: 1305px;
+    width: 1330px;
+    height: 30px;
+    font-size: 15px;
+    background-color: #205081;
+    color: #ffffff;
+    padding-left: 10px;
+    margin-left: 10px;
+    margin-top: 625px;
+}
+
+.showMe {
+    height: 28px;
+    background-color: #205081;
+    font-size: 15px;
+    color: #ffffff;
+    border: none;
+}
+
+.showMe:hover {
+    color: #d6d5d5;
+}
+
+.table2 {
+    margin-left: 10px;
+    width: 1330px;
+}
+
+.table2, th {
+    border: 1px solid #d6d6c2;
+    text-align: center;
+}
+
+.activities h2 {
+    border: 1px solid #000000;
+    width: 1330px;
     height: 30px;
     font-size: 15px;
     background-color: #205081;
@@ -73,15 +116,9 @@ textarea {
     margin-left: 10px;
 }
 
-.activities h2 {
-    border: 1px solid #000000;
-    width: 1305px;
-    height: 30px;
-    font-size: 15px;
-    background-color: #205081;
-    color: #ffffff;
-    padding-left: 10px;
+.table3 {
     margin-left: 10px;
+    width: 1330px;
 }
 
 
