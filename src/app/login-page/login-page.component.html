@@ -7,16 +7,16 @@
     <label for="username">Username</label>
     <br />
     <i class="fa fa-user fa-lg"></i>
-    <input type="text" id="username" name="username" />
+    <input type="text" id="username" name="username" [(ngModel)]="username" />
     <br />
     <br />
     <label for="password">Password</label>
     <br />
     <i class="fa fa-lock fa-lg"></i>
-    <input type="password" id="password" name="password" />
+    <input type="password" id="password" name="password" [(ngModel)]="password" />
     <br />
     <br />
     <hr />
     <br />
-    <button type="submit">Sign in</button>
+    <button type="submit" (click)="signIn()">Sign in</button>
 </form>
