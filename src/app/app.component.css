@@ -1,3 +1,5 @@
+/* CSS Code for The Navigation Bar. */
+
 .navbar {
     background-color: #205081;
     padding-left: 10px;
@@ -10,4 +12,9 @@
 
 .navbar-light .navbar-nav .nav-link:hover {
     color: #d6d5d5;
+}
+
+#logout {
+    cursor: pointer;
+    margin-right: 10px;
 }

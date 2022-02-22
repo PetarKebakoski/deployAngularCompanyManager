@@ -1,22 +1,26 @@
+<!-- Login Page -->
+
 <div class="images">
     <img src="../assets/logointellipse.png" class="logo1" alt="Logo Intellipse" />
     <img src="../assets/logosette.png" class="logo2" alt="Logo Sette" />
 </div>
 
+<!-- The Login Form has two input tags (username and password) and Sign in button. -->
+<!-- [(ngModel)]="loginUserData.username and [(ngModel)]="loginUserData.password" are used for user authentication. -->
 <form>
     <label for="username">Username</label>
     <br />
     <i class="fa fa-user fa-lg"></i>
-    <input type="text" id="username" name="username" [(ngModel)]="username" />
+    <input type="text" id="username" name="username" [(ngModel)]="loginUserData.username" required />
     <br />
     <br />
     <label for="password">Password</label>
     <br />
     <i class="fa fa-lock fa-lg"></i>
-    <input type="password" id="password" name="password" [(ngModel)]="password" />
+    <input type="password" id="password" name="password" [(ngModel)]="loginUserData.password" required />
     <br />
     <br />
     <hr />
     <br />
-    <button type="submit" (click)="signIn()">Sign in</button>
+    <button type="submit" (click)="loginUser()">Sign in</button>
 </form>

@@ -1,3 +1,8 @@
+<!-- Navigation Bar -->
+<!-- The Navigation Bar Has Five Links (Home, Statistics, Holidays, Time Card and Logout). -->
+<!-- <ul></ul>, <li></li> and <a></a> tags are used in order to create the navigation bar. -->
+
+<!--*ngIf="showMenu" is used to hide the navigation bar in the login page. -->
 <nav *ngIf="showMenu" class="navbar navbar-expand-lg navbar-light">
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -16,6 +21,13 @@
                 Card</a>
         </li>
     </ul>
+    <ul class="navbar-nav ms-auto">
+        <!-- *ngIf="authentication.loggedIn()" and (click)="authentication.logoutUser() are used when the users want to logout from the application." -->
+        <li><a id="logout" class="nav-link" *ngIf="authentication.loggedIn()" (click)="authentication.logoutUser()"><i
+                    class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Logout</a></li>
+        <!-- <li><a id="logout" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Logout</a></li> -->
+    </ul>
 </nav>
 
+<!-- Router-Outlet is an Angular directive from the router library that is used to insert the component matched by routes to be displayed on the screen. -->
 <router-outlet></router-outlet>

@@ -1,7 +1,7 @@
 <div class="addTask">
     <br />
     <h2>Add task</h2>
-    <form [formGroup]="addTaskForm">
+    <form #addTaskPost="ngForm" (ngSubmit)="onSubmit(addTaskPost.value)" [formGroup]="addTaskForm">
         <table class="table1">
             <tr>
                 <td><label for="selectProject">Select project</label></td>
@@ -9,15 +9,17 @@
                 <td><label for="duration">Duration</label></td>
             </tr>
             <tr>
-                <td><select name="customersAndProjects" formControlName="project" id="customersAndProjects">
+                <td><select name="customersAndProjects" formControlName="project" id="customersAndProjects" required
+                        [ngModel]>
                         <option value="" disabled selected hidden>Select project</option>
-                        <option value="one">Customer 001 Project 001</option>
-                        <option value="two">Customer 001 Project 002</option>
-                        <option value="three">Customer 002 Project 001</option>
-                        <option value="four">Customer 002 Project 002</option>
+                        <option>Customer 001 Project 001</option>
+                        <option>Customer 001 Project 002</option>
+                        <option>Customer 002 Project 001</option>
+                        <option>Customer 002 Project 002</option>
                     </select></td>
-                <td><input type="date" formControlName="date" /></td>
-                <td><input type="text" formControlName="duration" placeholder="Enter duration" /></td>
+                <td><input type="date" formControlName="date" required [ngModel] /></td>
+                <td><input type="text" formControlName="duration" placeholder="Enter duration" required [ngModel] />
+                </td>
             </tr>
             <tr>
                 <td colspan="2"><label for="task">Task</label></td>
@@ -25,26 +27,29 @@
             </tr>
             <tr>
                 <td colspan="2"><input id="task" type="text" formControlName="task" placeholder="Task" /></td>
-                <td><input type="text" formControlName="reportedDuration" placeholder="Reported duration" /></td>
+                <td><input type="text" formControlName="reportedDuration" placeholder="Reported duration" required
+                        [ngModel] /></td>
             </tr>
             <tr>
                 <td colspan="2" rowspan="6"><textarea placeholder="Task" id="taskTextarea"></textarea></td>
                 <td><label for="durationOvertime">Duration (Overtime)</label></td>
             </tr>
             <tr>
-                <td><input type="text" formControlName="overtimeDuration" placeholder="Overtime duration" /></td>
+                <td><input type="text" formControlName="overtimeDuration" placeholder="Overtime duration" required
+                        [ngModel] /></td>
             </tr>
             <tr>
                 <td><label for="durationWeekend">Duration (Weekend)</label></td>
             </tr>
             <tr>
-                <td><input type="text" formControlName="weekendDuration" placeholder="Weekend duration" /></td>
+                <td><input type="text" formControlName="weekendDuration" placeholder="Weekend duration" required /></td>
             </tr>
             <tr>
                 <td><label for="durationNotReported">Duration (Not reported)</label></td>
             </tr>
             <tr>
-                <td><input type="text" formControlName="notReportedDuration" placeholder="Not reported duration" /></td>
+                <td><input type="text" formControlName="notReportedDuration" placeholder="Not reported duration"
+                        required /></td>
             </tr>
             <tr>
                 <td colspan="2"><label for="note">Note</label></td>
@@ -53,10 +58,12 @@
                 <td colspan="2"><input id="note" type="text" placeholder="Enter note" /></td>
             </tr>
             <tr>
-                <td colspan="3"><button id="addTaskButton" (click)="addItem()">Add task</button></td>
+                <td colspan="3"><button id="addTaskButton" [disabled]="addTaskPost.invalid" (click)="addItem()">Add
+                        task</button></td>
             </tr>
             <tr>
-                <td colspan="3"><button id="addTaskTemplateButton">Add task template</button></td>
+                <td colspan="3"><button id="addTaskTemplateButton">Add task
+                        template</button></td>
             </tr>
         </table>
     </form>
@@ -84,18 +91,18 @@
                 <th>Weekend Duration</th>
                 <th>Not reported Duration</th>
                 <th>Date</th>
-                <th>Edit</th>
+                <th>Edit and Delete</th>
             </tr>
         </thead>
     </table>
 </div>
 
-<!-- <div class="go">
+<div class="go">
     <table class="table3">
         <tr>
-            <td><input type="date" id="date" /></td>
-            <td>-</td>
-            <td><input type="date" id="date" /></td>
+            <td><input type="date" id="date1" /></td>
+            <td id="hyphen">-</td>
+            <td><input type="date" id="date2" /></td>
             <td><select name="showEverything1" id="showEverything1">
                     <option value="" disabled selected hidden>Show everything</option>
                     <option value="project">By project</option>
@@ -107,16 +114,16 @@
                     <option value="" disabled selected hidden>Show everything</option>
                 </select>
             </td>
-            <td><input type="text" placeholder="Task name" /></td>
-            <td><input type="text" placeholder="Task note" /></td>
-            <td><input name="btn" type="radio" /><label for="viewEveryTask">View every task</label></td>
-            <td><input name="btn" type="radio" /><label for="viewByDay">View by day</label></td>
-            <td><input name="btn" type="radio" /><label for="sortByUsername">Sort by username</label></td>
-            <td><input name="btn" type="radio" /><label for="sortByDate">Sort by date</label></td>
+            <td><input type="text" id="taskName" placeholder="Task name" /></td>
+            <td><input type="text" id="taskNote" placeholder="Task note" /></td>
+            <td><input name="btn" type="radio" id="radio1" /><label for="viewEveryTask">View every task</label></td>
+            <td><input name="btn" type="radio" id="radio2" /><label for="viewByDay">View by day</label></td>
+            <td><input name="btn" type="radio" id="radio3" /><label for="sortByUsername">Sort by username</label></td>
+            <td><input name="btn" type="radio" id="radio4" /><label for="sortByDate">Sort by date</label></td>
             <td><button id="goButton">GO</button></td>
         </tr>
     </table>
-</div> -->
+</div>
 
 <div class="activities">
     <h2><i class="fa fa-table" aria-hidden="true"></i>&nbsp;Activities</h2>
@@ -131,19 +138,31 @@
                 <th>Weekend Duration</th>
                 <th>Not reported Duration</th>
                 <th>Date</th>
-                <th>Edit</th>
+                <th>Edit and Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of listData">
-                <td>{{item.project}}</td>
-                <td>{{item.task}}</td>
-                <td>{{item.duration}}</td>
-                <td>{{item.reportedDuration}}</td>
-                <td>{{item.overtimeDuration}}</td>
-                <td>{{item.weekendDuration}}</td>
-                <td>{{item.notReportedDuration}}</td>
-                <td>{{item.date}}</td>
+            <tr *ngFor="let item of listData; index as i;">
+                <td class="items">{{item.project}}</td>
+                <td class="items">{{item.task}}</td>
+                <td class="items">{{item.duration}}</td>
+                <td class="items">{{item.reportedDuration}}</td>
+                <td class="items">{{item.overtimeDuration}}</td>
+                <td class="items">{{item.weekendDuration}}</td>
+                <td class="items">{{item.notReportedDuration}}</td>
+                <td class="items">{{item.date}}</td>
+                <td class="items">
+                    <button id="cancelButton" *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit = false"
+                        ng-click="cancel()"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    <button id="saveButton" *ngIf="enableEdit && enableEditIndex == i" id="saveButton"
+                        (click)="saveSegment()" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    </button>
+                    <button id="editButton"><a href="#" *ngIf="!enableEdit" (click)="enableEditMethod($event, i)"><i
+                                class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>
+                    <br />
+                    <button id="deleteButton" (click)="onDelete(this.item.id)"><i class="fa fa-trash"
+                            aria-hidden="true"></i></button>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -7,21 +8,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  alert: boolean = false;
-  username: string;
-  password: string;
-  constructor(private router: Router) { }
+  // alert: boolean = false;
+  // username: string;
+  // password: string;
+  // constructor(private router: Router) { }
+
+  loginUserData: any = {}
+  constructor(private authentication: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
-  signIn() {
-    if (this.username == "test001" && this.password == "testuser001") {
-      this.router.navigateByUrl("/");
-    }
-    else {
-      alert("Please Enter Valid Username and Password");
-    }
+  // loginUser() - Call the service passing the user data which is the login user data. 
+  loginUser() {
+    this.authentication.loginUser(this.loginUserData)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      )
   }
+
+  // signIn() {
+  //   if (this.username == "test001" && this.password == "testuser001") {
+  //     this.router.navigateByUrl("/");
+  //   }
+  //   else {
+  //     alert("Please Enter Valid Username and Password");
+  //   }
+  // }
 
 }

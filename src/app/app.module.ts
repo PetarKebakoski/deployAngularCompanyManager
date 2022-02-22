@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { HolidaysComponent } from './holidays/holidays.component';
 import { TimeCardComponent } from './time-card/time-card.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from './authentication.service';
+import { AddTaskService } from './add-task.service';
 
 @NgModule({
   declarations: [
@@ -26,8 +29,9 @@ import { TimeCardComponent } from './time-card/time-card.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthenticationService, AddTaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
