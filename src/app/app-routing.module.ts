@@ -6,6 +6,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { TimeCardComponent } from './time-card/time-card.component';
 
+// Route Constant 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'time-card', component: TimeCardComponent },
 ];
 
+// App Routing Module
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

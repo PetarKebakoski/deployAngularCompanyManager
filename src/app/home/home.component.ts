@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
 
     this.listData = [];
 
+    // Inserting data into the table (class="table4").
     this.addTaskForm = this.fb.group({
       project: ['', Validators.required],
       task: ['', Validators.required],
@@ -31,10 +32,12 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // Inserting data into the table (class="table4").
   public addItem(): void {
     this.listData.push(this.addTaskForm.value);
   }
 
+  // Post API Method | http post call.
   postdata(form: Object) {
     this.postData.postData(form).subscribe(
       data => {
@@ -46,6 +49,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  // Post API Method | http post call.
   onSubmit(formValue: any) {
     console.log('formValue', formValue);
     this.postdata(formValue);
@@ -64,12 +68,14 @@ export class HomeComponent implements OnInit {
     this.showMe = !this.showMe
   }
 
+  // Edit On Click Functionality (Cancel Button And Save Button)
   enableEditMethod(e: any, i: any) {
     this.enableEdit = true;
     this.enableEditIndex = i;
     console.log(i, e);
   }
 
+  // Delete Button 
   onDelete(id: Guid) {
     let item = this.listData.filter((x: any) => x.id === id)[0];
     let index = this.listData.indexOf(item, 0);
