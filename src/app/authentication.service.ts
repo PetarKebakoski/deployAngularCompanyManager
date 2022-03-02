@@ -16,16 +16,36 @@ export class AuthenticationService {
 
   // For login request we should use POST method.
 
+  // loginUser(user: any) {
+
+  //   // let headers= new HttpHeaders()
+  //   // headers .set('content-type', 'application/json')
+  //   // headers .set('Authorization', 'basic')
+  //   // headers .set('Access-Control-Allow-Origin', '*');
+  //   // return this.http.post<any>(this.loginUrl, user, { 'headers': headers });
+
+  //   return this.http.post<any>(this.loginUrl, user);
+
+  // }
+
   loginUser(user: any) {
+    const basicToken =
+      'ODI0MjNkNDBjZDQzOGRiMTA2MjAwZjZkY2ZjNmIzMDc1NWNlNTFiNDo2ZTgzYTFiYjU4MDExMTM5YmFjYjcxZGUwNzQwNzZlNzRjNzkwNjY2YTQ4YjFkYTcyZGRjMmYwMjUyNTI=';
 
-    // let headers= new HttpHeaders()
-    // headers .set('content-type', 'application/json')
-    // headers .set('Authorization', 'basic')
-    // headers .set('Access-Control-Allow-Origin', '*');
-    // return this.http.post<any>(this.loginUrl, user, { 'headers': headers });
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    headers = headers.set('Authorization', `Basic ${basicToken}`);
 
-    return this.http.post<any>(this.loginUrl, user);
+    let body = new URLSearchParams();
+    body.set('username', user.username);
+    body.set('password', user.password);
+    body.set('grant_type', 'password');
 
+    return this.http.post<any>(this.loginUrl, body.toString(), { headers });
+  }
+
+  saveAuthenticationData(token: string) {
+    localStorage.setItem('token', token);
   }
 
   loggedIn() {
