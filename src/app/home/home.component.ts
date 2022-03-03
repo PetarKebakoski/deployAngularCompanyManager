@@ -16,10 +16,10 @@ export class HomeComponent implements OnInit {
   saveSegment: any;
 
   projects: any[] = [
-    { id: 1, projectId: "Customer 001 Project 001" },
-    { id: 2, projectId: "Customer 001 Project 002" },
-    { id: 3, projectId: "Customer 002 Project 001" },
-    { id: 4, projectId: "Customer 002 Project 002" }
+    { id: "1", projectId: "Customer 001 Project 001" },
+    { id: "2", projectId: "Customer 001 Project 002" },
+    { id: "3", projectId: "Customer 002 Project 001" },
+    { id: "4", projectId: "Customer 002 Project 002" }
   ];
 
   constructor(private fb: FormBuilder, private postData: AddTaskService) {
@@ -41,7 +41,15 @@ export class HomeComponent implements OnInit {
 
   // Inserting data into the table (class="table4").
   public addItem(): void {
-    this.listData.push(this.addTaskForm.value);
+    // this.listData.push(this.addTaskForm.value);
+    const data = this.addTaskForm.value;
+
+    data.projectName = this.projects.find(
+      (p) => p.id === data.projectId
+    )?.projectId;
+
+    console.log(data);
+    this.listData.push(data);
   }
 
   // Post API Method | http post call.
