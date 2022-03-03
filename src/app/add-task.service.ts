@@ -9,7 +9,7 @@ import { AuthenticationService } from './authentication.service';
 
 export class AddTaskService {
 
-  baseUrl = "http://cm.inellipse.com:8088/api/projects";
+  baseUrl = "http://cm.inellipse.com:8088/api/user/tasks";
   // authentication: any;
 
   constructor(private http: HttpClient, private authentication: AuthenticationService) { }

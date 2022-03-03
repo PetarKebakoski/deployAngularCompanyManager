@@ -15,19 +15,26 @@ export class HomeComponent implements OnInit {
   enableEditIndex = null;
   saveSegment: any;
 
+  projects: any[] = [
+    { id: 1, projectId: "Customer 001 Project 001" },
+    { id: 2, projectId: "Customer 001 Project 002" },
+    { id: 3, projectId: "Customer 002 Project 001" },
+    { id: 4, projectId: "Customer 002 Project 002" }
+  ];
+
   constructor(private fb: FormBuilder, private postData: AddTaskService) {
 
     this.listData = [];
 
     // Inserting data into the table (class="table4").
     this.addTaskForm = this.fb.group({
-      project: ['', Validators.required],
-      task: ['', Validators.required],
-      duration: ['', Validators.required],
-      reportedDuration: ['', Validators.required],
-      overtimeDuration: ['', Validators.required],
-      weekendDuration: ['', Validators.required],
-      notReportedDuration: ['', Validators.required],
+      projectId: ['', Validators.required],
+      name: ['', Validators.required],
+      timeSpentInMinutes: ['', Validators.required],
+      reportedTimeSpentInMinutes: ['', Validators.required],
+      overTimeSpentInMinutes: ['', Validators.required],
+      weekendTimeSpentInMinutes: ['', Validators.required],
+      notReportedTimeSpentInMinutes: ['', Validators.required],
       date: ['', Validators.required],
     })
   }

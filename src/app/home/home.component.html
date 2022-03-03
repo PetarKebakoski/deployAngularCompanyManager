@@ -14,16 +14,18 @@
                 <td><label for="duration">Duration</label></td>
             </tr>
             <tr>
-                <td><select name="customersAndProjects" formControlName="project" id="customersAndProjects" required
+                <td><select name="customersAndProjects" formControlName="projectId" id="customersAndProjects" required
                         [ngModel]>
                         <option value="" disabled selected hidden>Select project</option>
-                        <option>Customer 001 Project 001</option>
-                        <option>Customer 001 Project 002</option>
-                        <option>Customer 002 Project 001</option>
-                        <option>Customer 002 Project 002</option>
+                        <option *ngFor="let customersAndProjects of projects" [value]="customersAndProjects.id">
+                            {{customersAndProjects.projectId}}</option>
+                        <!-- <option value="customerName">Customer 001 Project 002</option>
+                        <option value="customerName">Customer 002 Project 001</option>
+                        <option value="customerName">Customer 002 Project 002</option> -->
                     </select></td>
                 <td><input type="date" formControlName="date" required [ngModel] /></td>
-                <td><input type="text" formControlName="duration" placeholder="Enter duration" required [ngModel] />
+                <td><input type="text" formControlName="timeSpentInMinutes" placeholder="Enter duration" required
+                        [ngModel] />
                 </td>
             </tr>
             <tr>
@@ -31,30 +33,31 @@
                 <td><label for="durationReported">Duration (Reported)</label></td>
             </tr>
             <tr>
-                <td colspan="2"><input id="task" type="text" formControlName="task" placeholder="Task" /></td>
-                <td><input type="text" formControlName="reportedDuration" placeholder="Reported duration" required
-                        [ngModel] /></td>
+                <td colspan="2"><input id="task" type="text" formControlName="name" placeholder="Task" /></td>
+                <td><input type="text" formControlName="reportedTimeSpentInMinutes" placeholder="Reported duration"
+                        required [ngModel] /></td>
             </tr>
             <tr>
                 <td colspan="2" rowspan="6"><textarea placeholder="Task" id="taskTextarea"></textarea></td>
                 <td><label for="durationOvertime">Duration (Overtime)</label></td>
             </tr>
             <tr>
-                <td><input type="text" formControlName="overtimeDuration" placeholder="Overtime duration" required
+                <td><input type="text" formControlName="overTimeSpentInMinutes" placeholder="Overtime duration" required
                         [ngModel] /></td>
             </tr>
             <tr>
                 <td><label for="durationWeekend">Duration (Weekend)</label></td>
             </tr>
             <tr>
-                <td><input type="text" formControlName="weekendDuration" placeholder="Weekend duration" required /></td>
+                <td><input type="text" formControlName="weekendTimeSpentInMinutes" placeholder="Weekend duration"
+                        required /></td>
             </tr>
             <tr>
                 <td><label for="durationNotReported">Duration (Not reported)</label></td>
             </tr>
             <tr>
-                <td><input type="text" formControlName="notReportedDuration" placeholder="Not reported duration"
-                        required /></td>
+                <td><input type="text" formControlName="notReportedTimeSpentInMinutes"
+                        placeholder="Not reported duration" required /></td>
             </tr>
             <tr>
                 <td colspan="2"><label for="note">Note</label></td>
@@ -153,19 +156,19 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of listData; index as i;">
-                <td class="items">{{item.project}}</td>
-                <td class="items">{{item.task}}</td>
-                <td class="items">{{item.duration}}</td>
-                <td class="items">{{item.reportedDuration}}</td>
-                <td class="items">{{item.overtimeDuration}}</td>
-                <td class="items">{{item.weekendDuration}}</td>
-                <td class="items">{{item.notReportedDuration}}</td>
+                <td class="items">{{item.projectId}}</td>
+                <td class="items">{{item.name}}</td>
+                <td class="items">{{item.timeSpentInMinutes}}</td>
+                <td class="items">{{item.reportedTimeSpentInMinutes}}</td>
+                <td class="items">{{item.overTimeSpentInMinutes}}</td>
+                <td class="items">{{item.weekendTimeSpentInMinutes}}</td>
+                <td class="items">{{item.notReportedTimeSpentInMinutes}}</td>
                 <td class="items">{{item.date}}</td>
                 <td class="items">
                     <button id="cancelButton" *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit = false"
                         ng-click="cancel()"><i class="fa fa-times" aria-hidden="true"></i></button>
-                    <button id="saveButton" *ngIf="enableEdit && enableEditIndex == i" id="saveButton"
-                        (click)="saveSegment()" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    <button id="saveButton" *ngIf="enableEdit && enableEditIndex == i" (click)="saveSegment()"
+                        type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                     </button>
                     <button id="editButton"><a href="#" *ngIf="!enableEdit" (click)="enableEditMethod($event, i)"><i
                                 class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>

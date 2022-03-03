@@ -20,14 +20,25 @@ export class LoginPageComponent implements OnInit {
   }
 
   // loginUser() - Call the service passing the user data which is the login user data. 
+  // loginUser() {
+  //   this.authentication.loginUser(this.loginUserData)
+  //     .subscribe(
+  //       // res => console.log(res),
+  //       // err => console.log(err)
+  //     )
+  //     this.router.navigateByUrl("/");
+  // }
+
   loginUser() {
-    this.authentication.loginUser(this.loginUserData)
-      .subscribe(
-        // res => console.log(res),
-        // err => console.log(err)
-      )
-      this.router.navigateByUrl("/");
+    this.authentication.loginUser(this.loginUserData).subscribe(
+      (res) => {
+        this.authentication.saveAuthenticationData(res.access_token);
+      },
+      (err) => console.log(err)
+    );
+    this.router.navigateByUrl('/');
   }
+
 
   // signIn() {
   //   if (this.username == "test001" && this.password == "testuser001") {
