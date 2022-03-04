@@ -13,6 +13,7 @@ import { TimeCardComponent } from './time-card/time-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { AddTaskService } from './add-task.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AddTaskService } from './add-task.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    RouterModule,
   ],
   providers: [AuthenticationService, AddTaskService],
   bootstrap: [AppComponent]
