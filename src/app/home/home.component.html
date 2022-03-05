@@ -162,16 +162,12 @@
                 <td class="items">{{item.notReportedTimeSpentInMinutes}}</td>
                 <td class="items">{{item.date}}</td>
                 <td class="items">
-                    <button id="cancelButton" *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit = false"
-                        ng-click="cancel()"><i class="fa fa-times" aria-hidden="true"></i></button>
-                    <button id="saveButton" *ngIf="enableEdit && enableEditIndex == i" (click)="saveSegment()"
-                        type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    </button>
-                    <button id="editButton"><a href="#" *ngIf="!enableEdit" (click)="enableEditMethod($event, i)"><i
+                    <button id="cancelButton" *ngIf="enableEdit && editingTaskId == item.id"
+                        (click)="enableEdit = false" ng-click="cancel()"><i class="fa fa-times"
+                            aria-hidden="true"></i></button>
+                    <button *ngIf="!enableEdit" id="editButton"><a href="#" (click)="enableEditMethod(item)"><i
                                 class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>
                     <br />
-                    <button id="deleteButton" (click)="onDelete(this.item.id)"><i class="fa fa-trash"
-                            aria-hidden="true"></i></button>
                 </td>
             </tr>
         </tbody>
