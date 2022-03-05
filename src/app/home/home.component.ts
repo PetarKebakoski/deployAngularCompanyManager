@@ -35,7 +35,16 @@ export class HomeComponent implements OnInit {
 
   getProjects() {
     this.postData.getProjects().subscribe(
-      (res: any) => {this.projects = res},
+      (res: any) => { this.projects = res },
+      (err: Error) => {
+        console.log(err)
+      }
+    )
+  }
+
+  getTasks() {
+    this.postData.getTasks().subscribe(
+      (res: any) => { this.listData = res.content },
       (err: Error) => {
         console.log(err)
       }
@@ -71,7 +80,8 @@ export class HomeComponent implements OnInit {
   showMe: boolean = false
 
   ngOnInit(): void {
-    this.getProjects()
+    this.getProjects();
+    this.getTasks();
   }
 
   // toogleTag() - Task Suggestions And Templates 
