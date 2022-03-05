@@ -11,11 +11,19 @@ export class AppComponent {
   title = 'angular-company-manager';
   showMenu: boolean = false;
   constructor(private router: Router, public authentication: AuthenticationService) {
-    
+
     // Hide the Navigation Bar in the login page. 
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        this.showMenu = event.url !== "/login"
+        this.showMenu = event.url !== "/login";
+
+        if (!authentication.loggedIn() && event.url !== '/login') {
+          router.navigateByUrl('/login');
+        }
+
+        if (authentication.loggedIn() && event.url === '/login') {
+          router.navigateByUrl('/')
+        }
       }
     });
   }

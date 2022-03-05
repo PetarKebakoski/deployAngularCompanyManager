@@ -7,7 +7,10 @@
 
 <!-- The Login Form has two input tags (username and password) and Sign in button. -->
 <!-- [(ngModel)]="loginUserData.username and [(ngModel)]="loginUserData.password" are used for user authentication. -->
+
 <form>
+    <div class="errorMessage" *ngIf="errorMessage">{{errorMessage}}</div>
+    <br />
     <label for="username">Username</label>
     <br />
     <i class="fa fa-user fa-lg"></i>

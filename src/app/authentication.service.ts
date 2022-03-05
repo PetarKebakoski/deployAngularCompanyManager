@@ -16,18 +16,6 @@ export class AuthenticationService {
 
   // For login request we should use POST method.
 
-  // loginUser(user: any) {
-
-  //   // let headers= new HttpHeaders()
-  //   // headers .set('content-type', 'application/json')
-  //   // headers .set('Authorization', 'basic')
-  //   // headers .set('Access-Control-Allow-Origin', '*');
-  //   // return this.http.post<any>(this.loginUrl, user, { 'headers': headers });
-
-  //   return this.http.post<any>(this.loginUrl, user);
-
-  // }
-
   loginUser(user: any) {
     const basicToken =
       'ODI0MjNkNDBjZDQzOGRiMTA2MjAwZjZkY2ZjNmIzMDc1NWNlNTFiNDo2ZTgzYTFiYjU4MDExMTM5YmFjYjcxZGUwNzQwNzZlNzRjNzkwNjY2YTQ4YjFkYTcyZGRjMmYwMjUyNTI=';
