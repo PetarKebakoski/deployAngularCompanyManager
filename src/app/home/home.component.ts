@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   addTaskForm: FormGroup;
   listData: any;
   enableEdit = false;
-  enableEditIndex = null;
+  editingTaskId = "";
   saveSegment: any;
   projects: any[] = []
 
@@ -51,6 +51,15 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  updateTask(taskId: string, body: any) {
+    this.postData.updateTask(taskId, body).subscribe(
+      (res: any) => { this.getTasks() },
+      (err: Error) => {
+        console.log(err)
+      }
+    )
+  }
+
   // Post API Method | http post call.
   postdata(form: Object) {
     this.postData.postData(form).subscribe(
@@ -72,8 +81,14 @@ export class HomeComponent implements OnInit {
   onSubmit(formValue: any) {
     const data = this.addTaskForm.value;
     data.date = (data.date as string).replaceAll('-', "");
-    console.log(data);
-    this.postdata(data)
+
+    if (this.editingTaskId !== "") {
+      this.updateTask(this.editingTaskId, data)
+      this.editingTaskId = ""
+      this.enableEdit = false
+    } else {
+      this.postdata(data)
+    }
   }
 
   // showMe - Task Suggestions And Templates
@@ -91,19 +106,21 @@ export class HomeComponent implements OnInit {
   }
 
   // Edit On Click Functionality (Cancel Button And Save Button)
-  enableEditMethod(e: any, i: any) {
+  enableEditMethod(item: any) {
     this.enableEdit = true;
-    this.enableEditIndex = i;
-    console.log(i, e);
-  }
+    this.editingTaskId = item.id
+    let formattedDate: string = item.date.toString();
+    formattedDate = `${formattedDate.substring(0, 4)}-${formattedDate.substring(4, 6)}-${formattedDate.substring(6, 8)}`
 
-  // Delete Button 
-  onDelete(id: Guid) {
-    let item = this.listData.filter((x: any) => x.id === id)[0];
-    let index = this.listData.indexOf(item, 0);
-    if (index > -1) {
-      this.listData.splice(index, 1);
-    }
+    this.addTaskForm = this.fb.group({
+      projectId: [item.projectId, Validators.required],
+      name: [item.name, Validators.required],
+      timeSpentInMinutes: [item.timeSpentInMinutes, Validators.required],
+      reportedTimeSpentInMinutes: [item.reportedTimeSpentInMinutes, Validators.required],
+      overTimeSpentInMinutes: [item.overTimeSpentInMinutes, Validators.required],
+      weekendTimeSpentInMinutes: [item.weekendTimeSpentInMinutes, Validators.required],
+      notReportedTimeSpentInMinutes: [item.notReportedTimeSpentInMinutes, Validators.required],
+      date: [formattedDate, Validators.required],
+    })
   }
-
 }
