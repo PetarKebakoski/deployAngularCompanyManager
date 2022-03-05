@@ -14,13 +14,7 @@ export class HomeComponent implements OnInit {
   enableEdit = false;
   enableEditIndex = null;
   saveSegment: any;
-
-  projects: any[] = [
-    { id: "1", projectId: "Customer 001 Project 001" },
-    { id: "2", projectId: "Customer 001 Project 002" },
-    { id: "3", projectId: "Customer 002 Project 001" },
-    { id: "4", projectId: "Customer 002 Project 002" }
-  ];
+  projects: any[] = []
 
   constructor(private fb: FormBuilder, private postData: AddTaskService) {
 
@@ -39,24 +33,25 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  // Inserting data into the table (class="table4").
-  public addItem(): void {
-    // this.listData.push(this.addTaskForm.value);
-    const data = this.addTaskForm.value;
-
-    data.projectName = this.projects.find(
-      (p) => p.id === data.projectId
-    )?.projectId;
-
-    console.log(data);
-    this.listData.push(data);
+  getProjects() {
+    this.postData.getProjects().subscribe(
+      (res: any) => {this.projects = res},
+      (err: Error) => {
+        console.log(err)
+      }
+    )
   }
 
   // Post API Method | http post call.
   postdata(form: Object) {
     this.postData.postData(form).subscribe(
-      data => {
+      (data: any) => {
+        data.projectName = this.projects.find(
+          (p) => p.id === data.projectId
+        )?.projectName;
+
         console.log('dataPost', data);
+        this.listData.push(data);
       },
       error => {
         console.log(error.message);
@@ -66,15 +61,17 @@ export class HomeComponent implements OnInit {
 
   // Post API Method | http post call.
   onSubmit(formValue: any) {
-    console.log('formValue', formValue);
-    this.postdata(formValue);
+    const data = this.addTaskForm.value;
+    data.date = (data.date as string).replaceAll('-', "");
+    console.log(data);
+    this.postdata(data)
   }
 
   // showMe - Task Suggestions And Templates
   showMe: boolean = false
 
   ngOnInit(): void {
-
+    this.getProjects()
   }
 
   // toogleTag() - Task Suggestions And Templates 

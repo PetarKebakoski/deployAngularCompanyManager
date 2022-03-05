@@ -18,10 +18,7 @@
                         [ngModel]>
                         <option value="" disabled selected hidden>Select project</option>
                         <option *ngFor="let customersAndProjects of projects" [value]="customersAndProjects.id">
-                            {{customersAndProjects.projectId}}</option>
-                        <!-- <option value="customerName">Customer 001 Project 002</option>
-                        <option value="customerName">Customer 002 Project 001</option>
-                        <option value="customerName">Customer 002 Project 002</option> -->
+                            {{customersAndProjects.name}}</option>
                     </select></td>
                 <td><input type="date" formControlName="date" required [ngModel] /></td>
                 <td><input type="text" formControlName="timeSpentInMinutes" placeholder="Enter duration" required
@@ -66,7 +63,7 @@
                 <td colspan="2"><input id="note" type="text" placeholder="Enter note" /></td>
             </tr>
             <tr>
-                <td colspan="3"><button id="addTaskButton" [disabled]="addTaskPost.invalid" (click)="addItem()">Add
+                <td colspan="3"><button type="submit" id="addTaskButton" [disabled]="addTaskPost.invalid">Add
                         task</button></td>
             </tr>
             <tr>
