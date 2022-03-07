@@ -5,14 +5,12 @@ import { Router } from '@angular/router';
 // The authentication service is used to login & logout of the Angular app, it notifies other components when the user logs in & out, and allows access the currently logged in user.
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AuthenticationService {
+  private loginUrl = 'http://cm.inellipse.com:8088/api/oauth/token';
 
-  private loginUrl = "http://cm.inellipse.com:8088/api/oauth/token";
-
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   // For login request we should use POST method.
 
@@ -48,5 +46,4 @@ export class AuthenticationService {
   getToken() {
     return localStorage.getItem('token');
   }
-
 }

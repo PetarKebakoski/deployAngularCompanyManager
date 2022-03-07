@@ -22,7 +22,7 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     StatisticsComponent,
     HolidaysComponent,
-    TimeCardComponent
+    TimeCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +34,6 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   providers: [AuthenticationService, AddTaskService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
